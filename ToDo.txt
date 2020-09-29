@@ -1,0 +1,10 @@
+﻿[X] Instalar o pacote: Install-Package Microsoft.EntityFrameworkCore.SqlServer -Project: NomeProjeto;
+[X] Instalar o pacote: Install-Package Microsoft.EntityFrameworkCore.Tools -Project: NomeProjeto;
+[X] Criar as classes de modelo;
+[X] Criar uma classe que represente o EntityFramework no projeto (Context);
+[X] Mapear as classes de modelo que vão virar tabelas no BD;
+[X] Configurar a string de conexão com o BD;
+[X] Toda vez que houver alteração na estrutra do BD, será necessário criar uma nova migração
+	Add-Migration NomeMigracao -Project:NomeProjeto;
+[X] Para exercutar uma migração, é necessário rodar o comando
+	Update-Database -verbose -Project:NomeProjeto
