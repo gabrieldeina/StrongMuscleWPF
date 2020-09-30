@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StrongMuscle.Views"
         mc:Ignorable="d"
-        Title="Strong Muscle" Height="450" Width="800">
+        Title="Strong Muscle" Height="250" Width="300" WindowStartupLocation="CenterScreen" FontFamily="Segoe UI" Closing="Window_Closing" MaxHeight="250" MaxWidth="300" MinHeight="250" MinWidth="300">
     <Grid>
-
+        <Menu Height="20" VerticalAlignment="Top" FontFamily="Segoe UI">
+            <MenuItem Header="_Arquivo" Height="20">
+                <MenuItem x:Name="menuSair" Header="_Sair" Click="menuSair_Click" />
+            </MenuItem>
+        </Menu>
+        <Label Content="Login" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0" FontSize="16"/>
+        <Label Content="CPF" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-190,80,0,0"/>
+        <TextBox x:Name="txtCpf" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,84,0,0" Width="150"/>
+        <Button x:Name="btnLogin" Content="Login" HorizontalAlignment="Center" Margin="0,140,0,0" VerticalAlignment="Top" Width="100" Height="30" Click="btnLogin_Click"/>
     </Grid>
 </Window>

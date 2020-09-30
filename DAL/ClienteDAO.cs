@@ -22,5 +22,11 @@ namespace StrongMuscle.DAL {
             _context.Clientes.Update(cliente);
             _context.SaveChanges();
         }
+        public static bool Login(string cpf) {
+            if (BuscarPorCpf(cpf) != null) {
+                return true;
+            }
+            return false;
+        }
     }
 }

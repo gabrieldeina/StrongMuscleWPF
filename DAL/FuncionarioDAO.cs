@@ -11,7 +11,7 @@ namespace StrongMuscle.DAL {
         public static Funcionario BuscarPorId(int id) => _context.Funcionarios.Find(id);
         public static Funcionario BuscarPorCpf(string cpf) => _context.Funcionarios.FirstOrDefault(x => x.Cpf == cpf);
         public static bool Cadastrar(Funcionario funcionario) {
-            if (BuscarPorCpf(funcionario.Nome) == null) {
+            if (BuscarPorCpf(funcionario.Cpf) == null) {
                 _context.Funcionarios.Add(funcionario);
                 _context.SaveChanges();
                 return true;
