@@ -5,8 +5,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StrongMuscle.Views"
         mc:Ignorable="d"
-        Title="frmMenuGerente" Height="450" Width="800">
-    <Grid>
-        
+        Title="Strong Muscle" MinHeight="320" MaxHeight="320" MinWidth="620" MaxWidth="620" WindowStartupLocation="CenterScreen">
+
+    <Grid Background="#accbe1" >
+
+        <Rectangle HorizontalAlignment="Left" Margin="10,10,0,10" Fill="#7c98b3" Width="280"/>
+        <Label Foreground="#FFFFFF" Content="Cadastrar Funcionário" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <Label Foreground="#FFFFFF" Content="Nome" HorizontalAlignment="Left" Margin="20,80,0,0" VerticalAlignment="Top"/>
+        <Label Foreground="#FFFFFF" Content="Cpf" HorizontalAlignment="Left" Margin="20,110,0,0" VerticalAlignment="Top"/>
+        <Label Foreground="#FFFFFF" Content="Telefone" HorizontalAlignment="Left" Margin="20,140,0,0" VerticalAlignment="Top"/>
+        <Label Foreground="#FFFFFF" Content="Função" HorizontalAlignment="Left" Margin="20,170,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtNomeFuncionario" Background="#cee5f2" HorizontalAlignment="Left" Margin="90,83,0,0" Width="150" Height="20" VerticalAlignment="Top" />
+        <TextBox x:Name="txtCpfFuncionario" Background="#cee5f2" HorizontalAlignment="Left" Margin="90,113,0,0" Width="150" Height="20" VerticalAlignment="Top" />
+        <TextBox x:Name="txtTelefoneFuncionario" Background="#cee5f2" HorizontalAlignment="Left" Margin="90,143,0,0" Width="150" Height="20" VerticalAlignment="Top" />
+        <ComboBox x:Name="cboFuncao" Background="#cee5f2" HorizontalAlignment="Left" Margin="90,173,0, 0" Width="150" Height="20" VerticalAlignment="Top" BorderBrush="#FFCEE5F2">
+            <ComboBoxItem Content="Educador Físico"/>
+            <ComboBoxItem Content="Estagiário"/>
+            <ComboBoxItem Content="Gerente"/>
+        </ComboBox>
+        <Button x:Name="btnCadastrarFuncionario" BorderBrush="#ffffff" Foreground="#FFFFFF" Background="#637081" Content="Cadastrar" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="140,243,0,0" Height="20" Width="100" Click="btnCadastrarFuncionario_Click"/>
+
+        <Rectangle HorizontalAlignment="Left" Margin="310,10,0,10" Fill="#7c98b3" Width="280"/>
+        <Label Foreground="#FFFFFF" Content="Cadastrar Cliente" HorizontalAlignment="Left" Margin="320,20,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <Label Foreground="#FFFFFF" Content="Nome" HorizontalAlignment="Left" Margin="320,80,0,0" VerticalAlignment="Top"/>
+        <Label Foreground="#FFFFFF" Content="Cpf" HorizontalAlignment="Left" Margin="320,110,0,0" VerticalAlignment="Top"/>
+        <Label Foreground="#FFFFFF" Content="Telefone" HorizontalAlignment="Left" Margin="320,140,0,0" VerticalAlignment="Top"/>
+        <Label Foreground="#FFFFFF" Content="Altura" HorizontalAlignment="Left" Margin="320,170,0,0" VerticalAlignment="Top"/>
+        <Label Foreground="#FFFFFF" Content="Peso" HorizontalAlignment="Left" Margin="320,200,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtNomeCliente" Background="#cee5f2" HorizontalAlignment="Left" Margin="390,83,0,0" Width="150" Height="20" VerticalAlignment="Top" />
+        <TextBox x:Name="txtCpfCliente" Background="#cee5f2" HorizontalAlignment="Left" Margin="390,113,0,0" Width="150" Height="20" VerticalAlignment="Top" />
+        <TextBox x:Name="txtTelefoneCliente" Background="#cee5f2" HorizontalAlignment="Left" Margin="390,143,0,0" Width="150" Height="20" VerticalAlignment="Top" />
+        <TextBox x:Name="txtAlturaCliente" Background="#cee5f2" HorizontalAlignment="Left" Margin="390,173,0,0" Width="150" Height="20" VerticalAlignment="Top" />
+        <TextBox x:Name="txtPesoCliente" Background="#cee5f2" HorizontalAlignment="Left" Margin="390,203,0,0" Width="150" Height="20" VerticalAlignment="Top" />
+        <Button x:Name="btnCadastrarCliente" BorderBrush="#ffffff" Foreground="#FFFFFF" Background="#637081" Content="Cadastrar" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="440,243,0,0" Height="20" Width="100" Click="btnCadastrarCliente_Click"/>
+
     </Grid>
 </Window>
