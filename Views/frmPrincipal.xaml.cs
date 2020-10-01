@@ -43,7 +43,7 @@ namespace StrongMuscle.Views {
                         frm.ShowDialog();
                     }
                     if (funcionario.Funcao.Equals("Educador Físico")) {
-                        frmMenuGerente frm = new frmMenuGerente();
+                        frmMenuEducador frm = new frmMenuEducador();
                         frm.ShowDialog();
                     }
                     if (funcionario.Funcao.Equals("Estagiário")) {

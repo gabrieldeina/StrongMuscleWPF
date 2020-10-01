@@ -1,0 +1,22 @@
+﻿<Window x:Class="StrongMuscle.Views.frmMenuEducador"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StrongMuscle.Views"
+        mc:Ignorable="d"
+        Title="Strong Muscle" MinHeight="450" MaxHeight="450" MinWidth="800" MaxWidth="800" WindowStartupLocation="CenterScreen">
+    <Grid Background="#accbe1">
+
+        <Rectangle HorizontalAlignment="Left" Margin="10,10,0,290" Fill="#7c98b3" Width="250"/>
+        <Label Foreground="#FFFFFF" Content="Exercício" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <Label Foreground="#FFFFFF" Content="Nome" HorizontalAlignment="Left" Margin="20,50,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtNomeExercicio" Background="#cee5f2" HorizontalAlignment="Left" Margin="90,53,0,0" Width="150" Height="20" VerticalAlignment="Top" />
+        <Button x:Name="btnCadastrarExercicio" BorderBrush="#ffffff" Foreground="#FFFFFF" Background="#637081" Content="Cadastrar" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="175,83,0,0" Height="20" Width="65" Click="btnCadastrarExercicio_Click"/>
+        <Button x:Name="btnBuscarExercicio" BorderBrush="#ffffff" Foreground="#FFFFFF" Background="#637081" Content="Buscar" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="105,83,0,0" Height="20" Width="65" Click="btnBuscarExercicio_Click"/>
+        <Button x:Name="btnExcluirExercicio" BorderBrush="#ffffff" Foreground="#FFFFFF" Background="#637081" Content="Excluir" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="35,83,0,0" Height="20" Width="65" IsEnabled="False" Click="btnExcluirExercicio_Click"/>
+
+        <Rectangle HorizontalAlignment="Left" Margin="270,10,0,290" Fill="#7c98b3" Width="300"/>
+        <Label Foreground="#FFFFFF" Content="Treino" HorizontalAlignment="Left" Margin="280,20,0,0" VerticalAlignment="Top" FontSize="14"/>
+    </Grid>
+</Window>
