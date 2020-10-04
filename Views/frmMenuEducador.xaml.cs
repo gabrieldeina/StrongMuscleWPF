@@ -18,15 +18,33 @@ namespace StrongMuscle.Views {
     /// </summary>
     public partial class frmMenuEducador : Window {
         Exercicio ex = new Exercicio();
+        Treino tr = new Treino();
+        Cliente cl = new Cliente();
+        private List<dynamic> exercicios = new List<dynamic>();
+
         public frmMenuEducador() {
             InitializeComponent();
+        }
+        private void Window_Loaded(object sender, RoutedEventArgs e) {
+            // Load Exercícios
+            CarregarExercicios();
+        }
+
+        private void CarregarExercicios() {
+            cboExercicios.ItemsSource = ExercicioDAO.Listar();
+            cboExercicios.DisplayMemberPath = "Nome";
+            cboExercicios.SelectedValuePath = "Id";
         }
 
         private void LimparFormulario() {
             txtNomeExercicio.Clear();
             btnCadastrarExercicio.IsEnabled = true;
             btnExcluirExercicio.IsEnabled = false;
+            cboExercicios.SelectedItem = null;
+            txtRepeticao.Clear();
             ex = new Exercicio();
+            tr = new Treino();
+            cl = new Cliente();
         }
 
         private void btnCadastrarExercicio_Click(object sender, RoutedEventArgs e) {
@@ -37,6 +55,7 @@ namespace StrongMuscle.Views {
                 if (ExercicioDAO.Cadastrar(ex)) {
                     MessageBox.Show($"Exercício cadastrado com sucesso", "Strong Muscle", MessageBoxButton.OK, MessageBoxImage.Information);
                     LimparFormulario();
+                    CarregarExercicios();
                 } else {
                     MessageBox.Show($"Esse exercício já existe", "Strong Muscle", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
@@ -69,6 +88,50 @@ namespace StrongMuscle.Views {
                 MessageBox.Show("Exercício não existe", "Strong Muscle", MessageBoxButton.OK, MessageBoxImage.Error);
                 LimparFormulario();
             }
+        }
+
+        private void btnAdicionarExercício_Click(object sender, RoutedEventArgs e) {
+            ex = ExercicioDAO.BuscarPorId((int)cboExercicios.SelectedValue);
+            PopularDataGrid(ex);
+            PopularTreino(ex);
+            cboExercicios.SelectedItem = null;
+            txtRepeticao.Clear();
+        }
+
+        private void PopularDataGrid(Exercicio ex) {
+            dynamic item = new {
+                Nome = ex.Nome,
+                Repeticoes = txtRepeticao.Text,
+            };
+            exercicios.Add(item);
+            dtaExercicios.ItemsSource = exercicios;
+            dtaExercicios.Items.Refresh();
+        }
+
+        private void PopularTreino(Exercicio ex) {
+            tr.ItensTreino.Add(
+                new ItemTreino {
+                    Exercicio = ex,
+                    Repeticao = txtRepeticao.Text
+                }
+            );
+        }
+
+        private void btnCadastrarTreino_Click(object sender, RoutedEventArgs e) {
+            string categoria = ((ComboBoxItem)cboCategoria.SelectedItem).Content.ToString();
+            string subcategoria = ((ComboBoxItem)cboSubCategoria.SelectedItem).Content.ToString();
+            tr.Categoria = categoria;
+            tr.SubCategoria = subcategoria;
+            tr.Nome = $"{categoria} | {subcategoria}";
+            TreinoDAO.Cadastrar(tr);
+            MessageBox.Show("Treino cadastrado com sucesso!", "Strong Muscle", MessageBoxButton.OK, MessageBoxImage.Information);
+            LimparFormulario();
+        }
+
+        private void btnVincularTreino_Click(object sender, RoutedEventArgs e) {
+            cl = ClienteDAO.BuscarPorId((int)cboClientes.SelectedValue);
+            cl.Treino = TreinoDAO.BuscarPorId((int)cboTreinos.SelectedValue);
+            ClienteDAO.Alterar(cl);
         }
     }
 }

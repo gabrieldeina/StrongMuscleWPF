@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StrongMuscle.Views"
         mc:Ignorable="d"
-        Title="Strong Muscle" MinHeight="450" MaxHeight="450" MinWidth="800" MaxWidth="800" WindowStartupLocation="CenterScreen">
+        Title="Strong Muscle" MinHeight="480" MaxHeight="480" MinWidth="600" MaxWidth="600" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Grid Background="#accbe1">
 
-        <Rectangle HorizontalAlignment="Left" Margin="10,10,0,290" Fill="#7c98b3" Width="250"/>
+        <Rectangle HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Fill="#7c98b3" Width="250" Height="105"/>
         <Label Foreground="#FFFFFF" Content="Exercício" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Label Foreground="#FFFFFF" Content="Nome" HorizontalAlignment="Left" Margin="20,50,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtNomeExercicio" Background="#cee5f2" HorizontalAlignment="Left" Margin="90,53,0,0" Width="150" Height="20" VerticalAlignment="Top" />
@@ -16,7 +16,39 @@
         <Button x:Name="btnBuscarExercicio" BorderBrush="#ffffff" Foreground="#FFFFFF" Background="#637081" Content="Buscar" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="105,83,0,0" Height="20" Width="65" Click="btnBuscarExercicio_Click"/>
         <Button x:Name="btnExcluirExercicio" BorderBrush="#ffffff" Foreground="#FFFFFF" Background="#637081" Content="Excluir" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="35,83,0,0" Height="20" Width="65" IsEnabled="False" Click="btnExcluirExercicio_Click"/>
 
-        <Rectangle HorizontalAlignment="Left" Margin="270,10,0,290" Fill="#7c98b3" Width="300"/>
+        <Rectangle HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,125,0,0" Fill="#7c98b3" Height="140" Width="250"/>
+        <Label Foreground="#FFFFFF" Content="Selecionar Treino do Cliente" HorizontalAlignment="Left" Margin="20,135,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <Label Foreground="#FFFFFF" Content="Cliente" HorizontalAlignment="Left" Margin="20,165,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cboClientes" HorizontalAlignment="Left" Margin="90,168,0,0" VerticalAlignment="Top" Width="150"/>
+        <Label Foreground="#FFFFFF" Content="Treino" HorizontalAlignment="Left" Margin="20,195,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cboTreinos" HorizontalAlignment="Left" Margin="90,198,0,0" VerticalAlignment="Top" Width="150"/>
+        <Button x:Name="btnVincularTreino" BorderBrush="#ffffff" Foreground="#FFFFFF" Background="#637081" Content="Vincular" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="175,230,0,0" Height="20" Width="65" Click="btnVincularTreino_Click"/>
+
+        <Rectangle HorizontalAlignment="Left" VerticalAlignment="Top" Margin="270,10,0,0" Fill="#7c98b3" Height="415" Width="300"/>
         <Label Foreground="#FFFFFF" Content="Treino" HorizontalAlignment="Left" Margin="280,20,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <Label Foreground="#FFFFFF" Content="Exercício" HorizontalAlignment="Left" Margin="280,50,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cboExercicios" HorizontalAlignment="Left" Margin="365,53,0,0" VerticalAlignment="Top" Width="180"/>
+        <Label Foreground="#FFFFFF" Content="Repetições/Tempo" HorizontalAlignment="Left" Margin="280,80,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtRepeticao" Background="#cee5f2" HorizontalAlignment="Left" Margin="415,83,0,0" VerticalAlignment="Top" Width="130" Height="20"/>
+        <Label Foreground="#FFFFFF" Content="Categoria" HorizontalAlignment="Left" Margin="280,110,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cboCategoria" HorizontalAlignment="Left" Margin="395,113,0,0" VerticalAlignment="Top" Width="150">
+            <ComboBoxItem Content="Ectomorfo"/>
+            <ComboBoxItem Content="Endomorfo"/>
+            <ComboBoxItem Content="Mesomorfo"/>
+        </ComboBox>
+        <Label Foreground="#FFFFFF" Content="Subcategoria" HorizontalAlignment="Left" Margin="280,140,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cboSubCategoria" HorizontalAlignment="Left" Margin="395,143,0,0" VerticalAlignment="Top" Width="150">
+            <ComboBoxItem Content="Iniciante"/>
+            <ComboBoxItem Content="Intermediário"/>
+            <ComboBoxItem Content="Avançado"/>
+        </ComboBox>
+        <Button x:Name="btnAdicionarExercício" BorderBrush="#ffffff" Foreground="#FFFFFF" Background="#637081" Content="Adicionar" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="480,173,0,0" Height="20" Width="65" Click="btnAdicionarExercício_Click"/>
+        <DataGrid x:Name="dtaExercicios" Margin="295,200,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="250" Height="180" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Nome}" Header="Exercício" Width="3*"/>
+                <DataGridTextColumn Binding="{Binding Repeticoes}" Header="Repetições" Width="2*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="btnCadastrarTreino" BorderBrush="#ffffff" Foreground="#FFFFFF" Background="#637081" Content="Cadastrar" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="480,385,0,0" Height="20" Width="65" Click="btnCadastrarTreino_Click"/>
     </Grid>
 </Window>

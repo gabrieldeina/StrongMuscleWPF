@@ -7,10 +7,11 @@ namespace StrongMuscle.Models {
     [Table("Treinos")]
     class Treino : BaseModel {
         public Treino() {
-            ItemExercicios = new List<ItemTreino>();
+            ItensTreino = new List<ItemTreino>();
         }
-        public char Categoria { get; set; }
-        public char SubCategoria { get; set; }
-        public List<ItemTreino> ItemExercicios { get; set; }
+        public string Nome { get; set; }
+        public string Categoria { get; set; }
+        public string SubCategoria { get; set; }
+        public List<ItemTreino> ItensTreino { get; set; }
     }
 }
