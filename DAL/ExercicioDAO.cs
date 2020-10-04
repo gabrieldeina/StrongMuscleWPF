@@ -6,7 +6,7 @@ using System.Text;
 
 namespace StrongMuscle.DAL {
     class ExercicioDAO {
-        private static Context _context = new Context();
+        private static Context _context = SingletonContext.GetInstance();
         public static List<Exercicio> Listar() => _context.Exercicios.ToList();
         public static Exercicio BuscarPorId(int id) => _context.Exercicios.Find(id);
         public static Exercicio BuscarPorNome(string nome) => _context.Exercicios.FirstOrDefault(x => x.Nome == nome);

@@ -41,24 +41,33 @@ namespace StrongMuscle.Views {
                     if (funcionario.Funcao.Equals("Gerente")) {
                         frmMenuGerente frm = new frmMenuGerente();
                         frm.ShowDialog();
+                        txtCpf.Clear();
                     }
                     if (funcionario.Funcao.Equals("Educador Físico")) {
                         frmMenuEducador frm = new frmMenuEducador();
                         frm.ShowDialog();
+                        txtCpf.Clear();
                     }
                     if (funcionario.Funcao.Equals("Estagiário")) {
-                        frmMenuGerente frm = new frmMenuGerente();
-                        frm.ShowDialog();
+                        //frmEstagiario frm = new frmEstagiario();
+                        //frm.ShowDialog();
+                        txtCpf.Clear();
                     }
                 } else if (ClienteDAO.BuscarPorCpf(txtCpf.Text) != null) {
-                    Cliente cliente = new Cliente();
-                    cliente = ClienteDAO.BuscarPorCpf(txtCpf.Text);
+                    MessageBox.Show("Para acessar o menu de clientes, clique abaixo!", "Strong Muscle", MessageBoxButton.OK, MessageBoxImage.Information);
+                    txtCpf.Clear();
                 } else {
                     MessageBox.Show("CPF não cadastrado!", "Strong Muscle", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             } else {
                 MessageBox.Show("CPF Inválido!", "Strong Muscle", MessageBoxButton.OK, MessageBoxImage.Information);
             }
+        }
+
+        private void btnMenuCliente_Click(object sender, RoutedEventArgs e) {
+            frmCliente frm = new frmCliente();
+            frm.ShowDialog();
+            txtCpf.Clear();
         }
     }
 }

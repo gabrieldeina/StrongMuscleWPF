@@ -12,9 +12,12 @@
                 <MenuItem x:Name="menuSair" Header="_Sair" Click="menuSair_Click" />
             </MenuItem>
         </Menu>
-        <Label Content="Login" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0" FontSize="16"/>
-        <Label Content="CPF" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-190,80,0,0"/>
-        <TextBox x:Name="txtCpf" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,84,0,0" Width="150"/>
-        <Button x:Name="btnLogin" Content="Login" HorizontalAlignment="Center" Margin="0,140,0,0" VerticalAlignment="Top" Width="100" Height="30" Click="btnLogin_Click"/>
+        <Label Content="Login Funcionário" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0" FontSize="16"/>
+        <Label Content="CPF" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-190,60,0,0"/>
+        <TextBox x:Name="txtCpf" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,64,0,0" Width="150"/>
+        <Button x:Name="btnLogin" Content="Login" HorizontalAlignment="Center" Margin="0,90,0,0" VerticalAlignment="Top" Width="100" Height="30" Click="btnLogin_Click"/>
+
+        <Label Content="Menu Cliente" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,140,0,0" FontSize="16"/>
+        <Button x:Name="btnMenuCliente" Content="Clique aqui!" HorizontalAlignment="Center" Margin="0,170,0,0" VerticalAlignment="Top" Width="100" Height="30" Click="btnMenuCliente_Click"/>
     </Grid>
 </Window>

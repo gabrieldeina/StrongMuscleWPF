@@ -17,9 +17,9 @@ namespace StrongMuscle.Views {
     /// Interaction logic for frmMenuEducador.xaml
     /// </summary>
     public partial class frmMenuEducador : Window {
-        Exercicio ex = new Exercicio();
-        Treino tr = new Treino();
-        Cliente cl = new Cliente();
+        Exercicio exercicio = new Exercicio();
+        Treino treino = new Treino();
+        Cliente cliente = new Cliente();
         private List<dynamic> exercicios = new List<dynamic>();
 
         public frmMenuEducador() {
@@ -27,13 +27,19 @@ namespace StrongMuscle.Views {
         }
         private void Window_Loaded(object sender, RoutedEventArgs e) {
             // Load Exercícios
-            CarregarExercicios();
+            LoadComboBoxes();
         }
 
-        private void CarregarExercicios() {
+        private void LoadComboBoxes() {
             cboExercicios.ItemsSource = ExercicioDAO.Listar();
             cboExercicios.DisplayMemberPath = "Nome";
             cboExercicios.SelectedValuePath = "Id";
+            cboClientes.ItemsSource = ClienteDAO.Listar();
+            cboClientes.DisplayMemberPath = "Nome";
+            cboClientes.SelectedValuePath = "Id";
+            cboTreinos.ItemsSource = TreinoDAO.Listar();
+            cboTreinos.DisplayMemberPath = "Nome";
+            cboTreinos.SelectedValuePath = "Id";
         }
 
         private void LimparFormulario() {
@@ -41,21 +47,26 @@ namespace StrongMuscle.Views {
             btnCadastrarExercicio.IsEnabled = true;
             btnExcluirExercicio.IsEnabled = false;
             cboExercicios.SelectedItem = null;
+            cboClientes.SelectedItem = null;
+            cboTreinos.SelectedItem = null;
+            cboCategoria.SelectedItem = null;
+            cboSubCategoria.SelectedItem = null;
             txtRepeticao.Clear();
-            ex = new Exercicio();
-            tr = new Treino();
-            cl = new Cliente();
+            exercicio = new Exercicio();
+            treino = new Treino();
+            cliente = new Cliente();
+            exercicios = new List<dynamic>();
         }
 
         private void btnCadastrarExercicio_Click(object sender, RoutedEventArgs e) {
             if (!string.IsNullOrWhiteSpace(txtNomeExercicio.Text)) {
-                ex = new Exercicio {
+                exercicio = new Exercicio {
                     Nome = txtNomeExercicio.Text
                 };
-                if (ExercicioDAO.Cadastrar(ex)) {
+                if (ExercicioDAO.Cadastrar(exercicio)) {
                     MessageBox.Show($"Exercício cadastrado com sucesso", "Strong Muscle", MessageBoxButton.OK, MessageBoxImage.Information);
                     LimparFormulario();
-                    CarregarExercicios();
+                    LoadComboBoxes();
                 } else {
                     MessageBox.Show($"Esse exercício já existe", "Strong Muscle", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
@@ -66,9 +77,9 @@ namespace StrongMuscle.Views {
 
         private void btnBuscarExercicio_Click(object sender, RoutedEventArgs e) {
             if (!string.IsNullOrWhiteSpace(txtNomeExercicio.Text)) {
-                ex = ExercicioDAO.BuscarPorNome(txtNomeExercicio.Text);
-                if (ex != null) {
-                    txtNomeExercicio.Text = ex.Nome;
+                exercicio = ExercicioDAO.BuscarPorNome(txtNomeExercicio.Text);
+                if (exercicio != null) {
+                    txtNomeExercicio.Text = exercicio.Nome;
                     btnCadastrarExercicio.IsEnabled = false;
                     btnExcluirExercicio.IsEnabled = true;
                 } else {
@@ -80,8 +91,8 @@ namespace StrongMuscle.Views {
         }
 
         private void btnExcluirExercicio_Click(object sender, RoutedEventArgs e) {
-            if (ex != null) {
-                ExercicioDAO.Remover(ex);
+            if (exercicio != null) {
+                ExercicioDAO.Remover(exercicio);
                 MessageBox.Show("Exercício removido com sucesso!", "Strong Muscle", MessageBoxButton.OK, MessageBoxImage.Information);
                 LimparFormulario();
             } else {
@@ -91,11 +102,20 @@ namespace StrongMuscle.Views {
         }
 
         private void btnAdicionarExercício_Click(object sender, RoutedEventArgs e) {
-            ex = ExercicioDAO.BuscarPorId((int)cboExercicios.SelectedValue);
-            PopularDataGrid(ex);
-            PopularTreino(ex);
-            cboExercicios.SelectedItem = null;
-            txtRepeticao.Clear();
+            if (cboExercicios.SelectedItem != null) {
+                if (!string.IsNullOrWhiteSpace(txtRepeticao.Text)) {
+                    exercicio = ExercicioDAO.BuscarPorId((int)cboExercicios.SelectedValue);
+                    PopularDataGrid(exercicio);
+                    PopularTreino(exercicio);
+                    cboExercicios.SelectedItem = null;
+                    txtRepeticao.Clear();
+                } else {
+                    MessageBox.Show("Informe o número de repetições", "Strong Muscle", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            } else {
+                MessageBox.Show("Selecione um exercício", "Strong Muscle", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+
         }
 
         private void PopularDataGrid(Exercicio ex) {
@@ -109,7 +129,7 @@ namespace StrongMuscle.Views {
         }
 
         private void PopularTreino(Exercicio ex) {
-            tr.ItensTreino.Add(
+            treino.ItensTreino.Add(
                 new ItemTreino {
                     Exercicio = ex,
                     Repeticao = txtRepeticao.Text
@@ -118,20 +138,43 @@ namespace StrongMuscle.Views {
         }
 
         private void btnCadastrarTreino_Click(object sender, RoutedEventArgs e) {
-            string categoria = ((ComboBoxItem)cboCategoria.SelectedItem).Content.ToString();
-            string subcategoria = ((ComboBoxItem)cboSubCategoria.SelectedItem).Content.ToString();
-            tr.Categoria = categoria;
-            tr.SubCategoria = subcategoria;
-            tr.Nome = $"{categoria} | {subcategoria}";
-            TreinoDAO.Cadastrar(tr);
-            MessageBox.Show("Treino cadastrado com sucesso!", "Strong Muscle", MessageBoxButton.OK, MessageBoxImage.Information);
-            LimparFormulario();
+            if (cboCategoria.SelectedItem != null) {
+                if (cboSubCategoria.SelectedItem != null) {
+                    if (exercicios.Count > 3) {
+                        string categoria = ((ComboBoxItem)cboCategoria.SelectedItem).Content.ToString();
+                        string subcategoria = ((ComboBoxItem)cboSubCategoria.SelectedItem).Content.ToString();
+                        treino.Categoria = categoria;
+                        treino.SubCategoria = subcategoria;
+                        treino.Nome = $"{categoria} | {subcategoria}";
+                        TreinoDAO.Cadastrar(treino);
+                        MessageBox.Show("Treino cadastrado com sucesso!", "Strong Muscle", MessageBoxButton.OK, MessageBoxImage.Information);
+                        LimparFormulario();
+                        LoadComboBoxes();
+                    } else {
+                        MessageBox.Show("O treino deve ter mais de 3 exercícios", "Strong Muscle", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                } else {
+                    MessageBox.Show("Selecione uma subcategoria", "Strong Muscle", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            } else {
+                MessageBox.Show("Selecione uma categoria", "Strong Muscle", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         private void btnVincularTreino_Click(object sender, RoutedEventArgs e) {
-            cl = ClienteDAO.BuscarPorId((int)cboClientes.SelectedValue);
-            cl.Treino = TreinoDAO.BuscarPorId((int)cboTreinos.SelectedValue);
-            ClienteDAO.Alterar(cl);
+            if (cboClientes.SelectedItem != null) {
+                if (cboTreinos.SelectedItem != null) {
+                    cliente = ClienteDAO.BuscarPorId((int)cboClientes.SelectedValue);
+                    cliente.Treino = TreinoDAO.BuscarPorId((int)cboTreinos.SelectedValue);
+                    ClienteDAO.Alterar(cliente);
+                    MessageBox.Show("Treino vinculado ao cliente", "Strong Muscle", MessageBoxButton.OK, MessageBoxImage.Information);
+                    LimparFormulario();
+                } else {
+                    MessageBox.Show("Selecione um treino", "Strong Muscle", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            } else {
+                MessageBox.Show("Selecione um cliente", "Strong Muscle", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
     }
 }

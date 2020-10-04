@@ -6,7 +6,7 @@ using System.Text;
 
 namespace StrongMuscle.DAL {
     class FuncionarioDAO {
-        private static Context _context = new Context();
+        private static Context _context = SingletonContext.GetInstance();
         public static List<Funcionario> Listar() => _context.Funcionarios.ToList();
         public static Funcionario BuscarPorId(int id) => _context.Funcionarios.Find(id);
         public static Funcionario BuscarPorCpf(string cpf) => _context.Funcionarios.FirstOrDefault(x => x.Cpf == cpf);
