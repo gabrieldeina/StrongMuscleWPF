@@ -1,0 +1,18 @@
+﻿<Window x:Class="StrongMuscle.Views.frmEstagiario"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StrongMuscle.Views"
+        mc:Ignorable="d"
+        Title="Strong Muscle" MinHeight="200" MinWidth="290" MaxHeight="200" MaxWidth="290" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+    <Grid Background="#accbe1">
+        <Rectangle HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Fill="#7c98b3" Height="140" Width="250"/>
+        <Label Foreground="#FFFFFF" Content="Selecionar Treino do Cliente" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <Label Foreground="#FFFFFF" Content="Cliente" HorizontalAlignment="Left" Margin="20,50,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cboClientes" HorizontalAlignment="Left" Margin="90,53,0,0" VerticalAlignment="Top" Width="150"/>
+        <Label Foreground="#FFFFFF" Content="Treino" HorizontalAlignment="Left" Margin="20,80,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cboTreinos" HorizontalAlignment="Left" Margin="90,83,0,0" VerticalAlignment="Top" Width="150"/>
+        <Button x:Name="btnVincularTreino" BorderBrush="#ffffff" Foreground="#FFFFFF" Background="#637081" Content="Vincular" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="175,120,0,0" Height="20" Width="65" Click="btnVincularTreino_Click"/>
+    </Grid>
+</Window>

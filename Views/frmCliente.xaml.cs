@@ -3,6 +3,7 @@ using StrongMuscle.Models;
 using StrongMuscle.Utils;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -29,9 +30,9 @@ namespace StrongMuscle.Views {
                 if (ValidarCpf.Validar(txtCpf.Text)) {
                     if (ClienteDAO.BuscarPorCpf(txtCpf.Text) != null) {
                         Cliente cliente = ClienteDAO.BuscarPorCpf(txtCpf.Text);
-                        if (cliente.Treino != null) {
-                            PopularDataGrid(cliente.Treino);
-                            MessageBox.Show("Acertou", "Strong Muscle", MessageBoxButton.OK, MessageBoxImage.Information);
+                        if (cliente != null) {
+                            //PopularDataGrid(cliente);
+                            MessageBox.Show("Treino impresso", "Strong Muscle", MessageBoxButton.OK, MessageBoxImage.Information);
                         } else {
                             MessageBox.Show("Cliente sem treino, fale com um educador", "Strong Muscle", MessageBoxButton.OK, MessageBoxImage.Information);
                         }
@@ -45,8 +46,8 @@ namespace StrongMuscle.Views {
                 MessageBox.Show("Informe o CPF", "Strong Muscle", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
-        private void PopularDataGrid(Treino treino) {
-            exercicios = ItensTreinoDAO.Listar();
+        private void PopularDataGrid(Cliente cliente) {
+            exercicios = cliente.Treino.ItensTreino.ToList(); ;
 
             foreach (ItemTreino itemTreino in exercicios) {
                 dynamic item = new {

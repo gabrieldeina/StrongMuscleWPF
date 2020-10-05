@@ -49,8 +49,8 @@ namespace StrongMuscle.Views {
                         txtCpf.Clear();
                     }
                     if (funcionario.Funcao.Equals("Estagiário")) {
-                        //frmEstagiario frm = new frmEstagiario();
-                        //frm.ShowDialog();
+                        frmEstagiario frm = new frmEstagiario();
+                        frm.ShowDialog();
                         txtCpf.Clear();
                     }
                 } else if (ClienteDAO.BuscarPorCpf(txtCpf.Text) != null) {

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StrongMuscle.Views"
         mc:Ignorable="d"
-        Title="frmCliente" MinHeight="470" MinWidth="290" MaxHeight="470" MaxWidth="290" WindowStartupLocation="CenterScreen">
+        Title="Strong Muscle" MinHeight="470" MinWidth="290" MaxHeight="470" MaxWidth="290" WindowStartupLocation="CenterScreen">
     <Grid Background="#accbe1">
         <Rectangle HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Fill="#7c98b3" Width="250" Height="105"/>
         <Label Foreground="#FFFFFF" Content="Visualizar Treino" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top" FontSize="14"/>
